@@ -7,7 +7,7 @@ const WebDriver = require('selenium-webdriver');
   
   //setting chrome options to start the browser fully maximized
   var chromeOptions = {
-      'args': ['--start-maximized', '--headless']
+      'args': ['--start-maximized', '--headless', '--no-sandbox', '--disable-dev-shm-usage']
   };
   chromeCapabilities.set('chromeOptions', chromeOptions);
   
