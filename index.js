@@ -3,7 +3,14 @@ const AxeBuilder = require('@axe-core/webdriverjs');
 const WebDriver = require('selenium-webdriver');
 
 (async function example() {
-  let driver = await new WebDriver.Builder().forBrowser('chrome').build();
+  var chromeCapabilities = webdriver.Capabilities.chrome();
+  //setting chrome options to start the browser fully maximized
+  var chromeOptions = {
+      'args': ['--start-maximized', '--headless']
+  };
+  chromeCapabilities.set('chromeOptions', chromeOptions);
+  
+  let driver = await new WebDriver.Builder().withCapabilities(chromeCapabilities).forBrowser('chrome').build();
   const testUrl = core.getInput('url');
 
   driver.get(testUrl).then(() => {
