@@ -6,7 +6,7 @@ const WebDriver = require('selenium-webdriver');
   var chromeCapabilities = WebDriver.Capabilities.chrome();
   
   var chromeOptions = {
-      'args': ['--headless', '--no-sandbox']
+      'args': ['--headless', '--no-sandbox', '--remote-debugging-port=9222']
   };
   chromeCapabilities.set('chromeOptions', chromeOptions);
   
