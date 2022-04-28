@@ -1,15 +1,15 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+const AxeBuilder = require('@axe-core/webdriverjs');
+const WebDriver = require('selenium-webdriver');
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
-}
+const driver = new WebDriver.Builder().forBrowser('chrome').build();
+const testUrl = core.getInput('url');
+
+driver.get(testUrl).then(() => {
+  new AxeBuilder(driver).analyze((err, results) => {
+    if (err) {
+      // Handle error somehow
+    }
+    console.log(results);
+  });
+});

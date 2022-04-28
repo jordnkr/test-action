@@ -19,6 +19,8 @@
   "homepage": "https://github.com/jordnkr/test-action#readme",
   "dependencies": {
     "@actions/core": "^1.7.0",
-    "@actions/github": "^5.0.1"
+    "@actions/github": "^5.0.1",
+    "@axe-core/webdriverjs": "^4.4.2",
+    "selenium-webdriver": "^4.1.2"
   }
 }
