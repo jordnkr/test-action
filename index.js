@@ -7,12 +7,12 @@ const WebDriver = require('selenium-webdriver');
   
   //setting chrome options to start the browser fully maximized
   var chromeOptions = {
-      'args': ['--start-maximized', '--headless', '--no-sandbox', '--disable-dev-shm-usage']
+      'args': ['--start-maximized', '--headless', '--no-sandbox', '--disable-dev-shm-usage', '--single-process']
   };
   chromeCapabilities.set('chromeOptions', chromeOptions);
   
-  let driver = await new WebDriver.Builder().withCapabilities(chromeCapabilities).forBrowser('chrome').build();
-  const testUrl = core.getInput('url');
+  let driver = await new WebDriver.Builder().withCapabilities(chromeCapabilities).build();
+  /*const testUrl = core.getInput('url');
 
   driver.get(testUrl).then(() => {
     new AxeBuilder(driver).analyze((err, results) => {
@@ -21,13 +21,11 @@ const WebDriver = require('selenium-webdriver');
       }
       console.log(results);
     });
-  });
+  });*/
 
-  /*try {
-    await driver.get('http://www.google.com/ncr');
-    await driver.findElement(By.name('q'));.sendKeys('webdriver', Key.RETURN);
-    await driver.wait(until.titleIs('webdriver - Google Search'), 1000);
+  try {
+    await driver.get('http://www.google.com');
   } finally {
     await driver.quit();
-  }*/
+  }
 })();
