@@ -5,7 +5,7 @@ const chrome = require('selenium-webdriver/chrome');
 
 (async function example() {
   var driver = await new WebDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().addArguments('--headless', '--no-sandbox')).build();
-  /*const testUrl = core.getInput('url');
+  const testUrl = core.getInput('url');
 
   driver.get(testUrl).then(() => {
     new AxeBuilder(driver).analyze((err, results) => {
@@ -14,11 +14,11 @@ const chrome = require('selenium-webdriver/chrome');
       }
       console.log(results);
     });
-  });*/
+  });
 
-  try {
+  /*try {
     await driver.get('http://www.google.com');
   } finally {
     await driver.quit();
-  }
+  }*/
 })();
