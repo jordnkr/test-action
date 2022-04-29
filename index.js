@@ -4,7 +4,7 @@ const WebDriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
 (async function example() {
-  var driver = await new WebDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().addArguments('--headless', '--no-sandbox')).build();
+  var driver = await new WebDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().addArguments('--headless')).build();
   const testUrl = core.getInput('url');
 
   driver.get(testUrl).then(() => {
