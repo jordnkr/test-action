@@ -8,12 +8,11 @@ const chrome = require('selenium-webdriver/chrome');
   driver = await new WebDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().addArguments('--headless')).build();
   
   const testUrl = core.getInput('url');
-  driver.get(testUrl).then(() => {
-    new AxeBuilder(driver).analyze((err, results) => {
-      if (err) {
-        // Handle error somehow
-      }
-      console.log(results);
-    });
-  });
+  await driver.get(testUrl);
+
+  const axe = new AxeBuilder(driver);
+  const result = await axe.analyze();
+
+  console.log('axe results:')
+  console.log(result);
 })();
