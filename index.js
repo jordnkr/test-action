@@ -4,21 +4,20 @@ const WebDriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 
 (async function example() {
-  var driver = await new WebDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().addArguments('--headless')).build();
-  const testUrl = core.getInput('url');
-
-  driver.get(testUrl).then(() => {
+  let driver;
+  try {
+    driver = await new WebDriver.Builder().forBrowser('chrome').setChromeOptions(new chrome.Options().addArguments('--headless')).build();
+    const testUrl = core.getInput('url');
+    await driver.get(testUrl);
     new AxeBuilder(driver).analyze((err, results) => {
       if (err) {
-        // Handle error somehow
+        // Handle error
       }
       console.log(results);
     });
-  });
-
-  /*try {
-    await driver.get('http://www.google.com');
+  } catch (error) {
+    console.error(error);
   } finally {
     await driver.quit();
-  }*/
+  }
 })();
