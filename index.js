@@ -13,6 +13,6 @@ const chrome = require('selenium-webdriver/chrome');
   const axe = new AxeBuilder(driver);
   const result = await axe.analyze();
 
-  console.log('axe results:')
-  console.log(result);
+  console.log('axe violations:')
+  console.log(result.violations);
 })();
